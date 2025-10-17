@@ -1,0 +1,45 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# /portfolio/.gitignore
+
+# Dependências
+/node_modules
+
+# Variáveis de Ambiente e Arquivos de Build
+.env
+.env.local
+.env.development.local
+
+# Pastas de Build (Frontend e Backend)
+/frontend/dist
+/frontend/build
+/backend/dist
+/backend/build
+
+# Cache e Outros
+.vscode/
+npm-debug.log*
+yarn-debug.log*
