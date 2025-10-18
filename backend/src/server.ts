@@ -2,6 +2,8 @@ import express, { Request, Response } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import pool from './config/database';
+import projectRoutes from './routes/projectRoutes';
+import contactRoutes from './routes/contactRoutes';
 
 // Load environment variables
 dotenv.config();
@@ -31,6 +33,11 @@ app.get('/api/db-test', async (req: Request, res: Response) => {
     res.status(500).json({ error: 'Database connection failed' });
   }
 });
+
+// API routes
+app.use('/api', projectRoutes);
+
+app.use('/api', contactRoutes);
 
 // Start server
 app.listen(PORT, () => {
