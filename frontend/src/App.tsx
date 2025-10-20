@@ -1,31 +1,22 @@
-import { useEffect, useState } from 'react';
-import Hero from './sections/hero';
-import About from './sections/About';
-import Projects from './sections/Projects';
-import Contact from './sections/Contact';
-import type { Project } from './types';
-import { getProjects } from './services/api';
+import Sidebar from './components/sideBar';
+import HeroSection from './sections/Hero';
+import AboutSection from './sections/About';
+import ProjectsSection from './sections/Projects';
+import ContactSection from './sections/Contact';
 
 function App() {
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchProjects = async () => {
-      const data = await getProjects();
-      setProjects(data);
-      setLoading(false);
-    };
-
-    fetchProjects();
-  }, []);
-
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Hero />
-      <About />
-      <Projects projects={projects} loading={loading} />
-      <Contact />
+    <div className="flex">
+      {/* Sidebar */}
+      <Sidebar />
+      
+      {/* Main Content */}
+      <main className="ml-64 w-full">
+        <HeroSection />
+        <AboutSection />
+        <ProjectsSection />
+        <ContactSection />
+      </main>
     </div>
   );
 }

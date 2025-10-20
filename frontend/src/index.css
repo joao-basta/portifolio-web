@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-navy-dark text-slate-light;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}

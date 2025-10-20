@@ -1,108 +1,27 @@
-import { useState } from 'react';
-import { sendContactMessage } from '../services/api';
-
-const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
-  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus('sending');
-    
-    const success = await sendContactMessage(formData);
-    
-    if (success) {
-      setStatus('success');
-      setFormData({ name: '', email: '', message: '' });
-      setTimeout(() => setStatus('idle'), 3000);
-    } else {
-      setStatus('error');
-      setTimeout(() => setStatus('idle'), 3000);
-    }
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
+const ContactSection = () => {
   return (
-    <section className="py-20 px-4 bg-white">
-      <div className="max-w-2xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-800">
-          Get In Touch
+    <section id="contact" className="min-h-screen flex items-center justify-center py-20">
+      <div className="max-w-2xl text-center">
+        <h2 className="text-4xl font-bold text-slate-light mb-8">
+          <span className="">03.</span> What's Next?
         </h2>
+        <h3 className="text-5xl font-bold text-slate-light mb-8">
+          Get In Touch
+        </h3>
+        <p className="text-slate text-lg mb-12">
+          I'm currently looking for freelance opportunities and always open to 
+          discussing new projects. Whether you have a question or just want to 
+          say hi, I'll try my best to get back to you!
+        </p>
         
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <label htmlFor="name" className="block text-lg font-medium text-gray-700 mb-2">
-              Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none"
-            />
-          </div>
-          
-          <div>
-            <label htmlFor="email" className="block text-lg font-medium text-gray-700 mb-2">
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none"
-            />
-          </div>
-          
-          <div>
-            <label htmlFor="message" className="block text-lg font-medium text-gray-700 mb-2">
-              Message
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              required
-              rows={5}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none resize-none"
-            />
-          </div>
-          
-          <button
-            type="submit"
-            disabled={status === 'sending'}
-            className="w-full bg-purple-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-purple-700 disabled:bg-gray-400 transition-colors duration-300"
-          >
-            {status === 'sending' ? 'Sending...' : 'Send Message'}
-          </button>
-          
-          {status === 'success' && (
-            <p className="text-green-600 text-center font-medium">Message sent successfully!</p>
-          )}
-          {status === 'error' && (
-            <p className="text-red-600 text-center font-medium">Failed to send message. Please try again.</p>
-          )}
-        </form>
+          <a href="mailto:your.email@example.com"
+          className="inline-block px-8 py-4 border-2 border-white text-white rounded hover:bg-cyan hover:bg-opacity-10 transition-all duration-300 text-lg"
+        >
+          Say Hello
+        </a>
       </div>
     </section>
   );
 };
 
-export default Contact;
+export default ContactSection;
