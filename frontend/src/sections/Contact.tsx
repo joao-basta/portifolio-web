@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import { sendContactMessage } from '../services/api';
 
 const Contact = () => {
   const { ref, isVisible } = useScrollAnimation();
@@ -10,11 +11,16 @@ const Contact = () => {
     e.preventDefault();
     setStatus('sending');
 
-    setTimeout(() => {
+    const success = await sendContactMessage(formData);
+
+    if (success) {
       setStatus('success');
       setFormData({ name: '', email: '', message: '' });
       setTimeout(() => setStatus('idle'), 3000);
-    }, 1000);
+    } else {
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 3000);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -23,9 +29,12 @@ const Contact = () => {
 
   return (
     <section id="contact" className="min-h-screen flex items-center justify-center py-20">
-      <div ref={ref} className={`max-w-2xl w-full transition-all duration-700 ${
+      <div
+        ref={ref}
+        className={`max-w-2xl w-full transition-all duration-700 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-        }`}>
+        }`}
+      >
         <h2 className="text-4xl font-bold text-slate-light mb-8 text-center">
           <span className="text-cyan">03.</span> Get In Touch
         </h2>
@@ -36,15 +45,15 @@ const Contact = () => {
         </p>
 
         {/* Contact Options */}
-        <div className="flex gap-4 justify-center mb-12">
+        <div className="flex gap-4 justify-center mb-12 flex-wrap">
           
-           <a href="mailto:bpjoao00@gmail.com"
+           <a href="mailto:bpjoao00a@gmail.com"
             className="px-6 py-3 border-2 border-cyan text-cyan rounded hover:bg-cyan hover:text-navy-dark transition-all duration-300"
           >
             📧 Email Me
           </a>
           
-           <a href="https://wa.me/5511958436058" 
+           <a href="https://wa.me/5511958436058"
             target="_blank"
             rel="noopener noreferrer"
             className="px-6 py-3 border-2 border-cyan text-cyan rounded hover:bg-cyan hover:text-navy-dark transition-all duration-300"
@@ -52,7 +61,7 @@ const Contact = () => {
             💬 WhatsApp
           </a>
           
-          <a href="/public/Curriculo_joao_basta.pdf"
+           <a href="/public/Curriculo_Joao_basta.pdf"
             download
             className="px-6 py-3 bg-cyan text-navy-dark rounded hover:bg-cyan/80 transition-all duration-300 font-semibold"
           >
