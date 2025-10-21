@@ -65,7 +65,7 @@ const SideBar = () => {
                   
                    <a href={item.href}
                     onClick={handleNavClick}
-                    className="text-slate hover:text-cyan transition-colors duration-300 text-lg block"
+                    className="text-slate hover:text-white hover:scale-110 transition-colors duration-300 text-lg block hover:-translate-y-1"
                   >
                     {item.name}
                   </a>
@@ -78,7 +78,7 @@ const SideBar = () => {
         {/* Bottom Section - Social Links */}
         <div className="flex gap-4">
           
-            <a href="https://github.com/yourusername"
+            <a href="https://github.com/joao-basta"
             target="_blank"
             rel="noopener noreferrer"
             className="text-slate hover:text-cyan transition-colors duration-300"
@@ -86,7 +86,7 @@ const SideBar = () => {
             GitHub
           </a>
           
-           <a href="https://linkedin.com/in/yourusername"
+           <a href="https://linkedin.com/in/joao-paulo-santana-basta-47b849310"
             target="_blank"
             rel="noopener noreferrer"
             className="text-slate hover:text-cyan transition-colors duration-300"

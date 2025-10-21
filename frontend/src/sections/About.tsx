@@ -14,7 +14,7 @@ const About = () => {
         <h2 className="text-4xl font-bold text-slate-light mb-8">
           <span className="text-cyan">01.</span> About Me
         </h2>
-        <div className="text-slate text-lg space-y-4">
+        <div className="text-slate text-lg space-y-4 font-sans">
           <p>
             I'm Joao Basta, a Software Engineer specializing in transcending aesthetics. My background is in systems construction,
             meaning the value I deliver isn't just in what you see, but in the invisible foundation of your application.
