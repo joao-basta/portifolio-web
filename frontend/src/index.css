@@ -16,3 +16,49 @@
     scroll-margin-top: 2rem;
   }
 }
+.shiny-text {
+    font-weight: 800; /* Extra Bold */
+    display: inline-block; /* Necessário para que o background seja aplicado corretamente */
+    
+    /* Configuração do Gradiente (O 'Brilho') */
+    background-image: linear-gradient(
+      90deg,
+      #32d5f1 0%,    /* Cor Sombra (Esquerda) */
+      #7afafa 30%,    /* Cor Brilhante (O Ponto de Destaque) */
+      #96c4df 60%     /* Cor Sombra (Direita) */
+    );
+    
+    /* Define o background como duas vezes maior que o elemento, permitindo a rolagem do gradiente */
+    background-size: 200% 100%;
+    
+    /* O TRUQUE: Recorta o background para que ele apareça apenas onde houver texto */
+    -webkit-background-clip: text;
+    background-clip: text;
+    
+    /* Torna a cor do texto totalmente transparente, revelando o background recortado */
+    color: transparent;
+    
+    /* Aplica a animação definida abaixo */
+    animation: shine 7s infinite linear;
+  }
+
+  /* 2. Define a Animação Keyframes */
+  @keyframes shine {
+    /* Começa com o background totalmente à direita (o brilho escondido) */
+    0% {
+      background-position: 200% 0;
+    }
+    /* Termina com o background totalmente à esquerda (o brilho percorreu todo o texto) */
+    100% {
+      background-position: -200% 0;
+    }
+  }
+
+  /* Estilos de layout para centralizar e dar contraste */
+  .center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #0f172a; /* Fundo escuro (navy) para realçar o brilho */
+  } 

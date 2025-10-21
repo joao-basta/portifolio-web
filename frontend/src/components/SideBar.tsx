@@ -41,7 +41,7 @@ const SideBar = () => {
         `}
       >
         <div>
-          <h1 className="text-cyan text-2xl font-bold mb-12">Joao Basta</h1>
+          <h1 className="text-cyan text-2xl font-bold mb-12 shiny-text">Joao Basta</h1>
 
           <nav>
             <ul className="space-y-4">
