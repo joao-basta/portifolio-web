@@ -1,16 +1,18 @@
 import { useState } from 'react';
+import { useActiveSection } from '../hooks/useActiveSection';
 
 const SideBar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const activeSection = useActiveSection();
 
   const navItems = [
-    { name: 'About', href: '#about' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'About', href: '#about', id: 'about' },
+    { name: 'Projects', href: '#projects', id: 'projects' },
+    { name: 'Contact', href: '#contact', id: 'contact' },
   ];
 
   const handleNavClick = () => {
-    setIsOpen(false); // Close menu on mobile after clicking
+    setIsOpen(false);
   };
 
   return (
@@ -20,26 +22,11 @@ const SideBar = () => {
         onClick={() => setIsOpen(!isOpen)}
         className="fixed top-6 right-6 z-50 md:hidden bg-navy-light p-3 rounded-lg text-cyan"
       >
-        <svg
-          className="w-6 h-6"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           {isOpen ? (
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M6 18L18 6M6 6l12 12"
-            />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
           ) : (
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M4 6h16M4 12h16M4 18h16"
-            />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
           )}
         </svg>
       </button>
@@ -53,11 +40,9 @@ const SideBar = () => {
           md:translate-x-0
         `}
       >
-        {/* Top Section - Name/Logo */}
         <div>
           <h1 className="text-cyan text-2xl font-bold mb-12">Joao Basta</h1>
 
-          {/* Navigation Links */}
           <nav>
             <ul className="space-y-4">
               {navItems.map((item) => (
@@ -65,7 +50,13 @@ const SideBar = () => {
                   
                    <a href={item.href}
                     onClick={handleNavClick}
-                    className="text-slate hover:text-white hover:scale-110 transition-colors duration-300 text-lg block hover:-translate-y-1"
+                    className={`
+                      text-lg block transition-all duration-300
+                      ${activeSection === item.id 
+                        ? 'text-cyan font-bold scale-110 translate-x-2' 
+                        : 'text-slate hover:text-white hover:translate-x-1'
+                      }
+                    `}
                   >
                     {item.name}
                   </a>
@@ -78,7 +69,7 @@ const SideBar = () => {
         {/* Bottom Section - Social Links */}
         <div className="flex gap-4">
           
-            <a href="https://github.com/joao-basta"
+          <a  href="https://github.com/joao-basta"
             target="_blank"
             rel="noopener noreferrer"
             className="text-slate hover:text-cyan transition-colors duration-300"
@@ -86,7 +77,7 @@ const SideBar = () => {
             GitHub
           </a>
           
-           <a href="https://linkedin.com/in/joao-paulo-santana-basta-47b849310"
+          <a  href="https://linkedin.com/in/joao-paulo-santana-basta-47b849310"
             target="_blank"
             rel="noopener noreferrer"
             className="text-slate hover:text-cyan transition-colors duration-300"
@@ -96,12 +87,9 @@ const SideBar = () => {
         </div>
       </aside>
 
-      {/* Overlay for mobile */}
+      {/* Overlay */}
       {isOpen && (
-        <div
-          onClick={() => setIsOpen(false)}
-          className="fixed inset-0 bg-black bg-opacity-50 z-30 md:hidden"
-        />
+        <div onClick={() => setIsOpen(false)} className="fixed inset-0 bg-black bg-opacity-50 z-30 md:hidden" />
       )}
     </>
   );

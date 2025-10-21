@@ -1,7 +1,36 @@
+import { useState } from 'react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 const About = () => {
   const { ref, isVisible } = useScrollAnimation();
+  const [activeTab, setActiveTab] = useState<'Languages' | 'frameworks' | 'tools'>('Languages');
+
+   const skills = {
+    Languages:[
+      {name: 'Python', level: 85},
+      {name: 'Java', level: 70},
+      {name: 'JavaScript', level: 70},
+      {name: 'TypeScript', level: 65},
+      {name: 'C++', level: 50},
+    ],
+    frameworks:[
+      {name: 'React', level: 85},
+      {name: 'Node.js', level: 75},
+      {name: 'Tailwind', level: 70},
+      {name: 'Flask', level: 70},
+      {name: 'Restful APIs', level: 65},
+      {name: 'Django', level: 60}
+    ],
+    tools:[
+      {name: 'Git', level: 90},
+      {name: 'github', level: 85},
+      {name: 'PostgreSQL', level: 70},
+      {name: 'Azure', level: 65},
+      {name: 'Docker', level: 65},
+      {name: 'AWS', level: 60}
+
+    ],
+  };
 
   return (
     <section id="about" className="min-h-screen flex items-center py-20">
@@ -14,7 +43,8 @@ const About = () => {
         <h2 className="text-4xl font-bold text-slate-light mb-8">
           <span className="text-cyan">01.</span> About Me
         </h2>
-        <div className="text-slate text-lg space-y-4 font-sans">
+        
+        <div className="text-slate text-lg space-y-4 mb-12">
           <p>
             I'm Joao Basta, a Software Engineer specializing in transcending aesthetics. My background is in systems construction,
             meaning the value I deliver isn't just in what you see, but in the invisible foundation of your application.
@@ -36,28 +66,67 @@ const About = () => {
             Let's build a solution that works intelligently for you.
           </p>
           <br /><br />
+        </div>
 
-          <p>Here are some technologies I've been working with:</p>
-          <ul className="grid grid-cols-2 gap-2 mt-4">
-            <li className="flex items-center hover:translate-x-1 transition-transform duration-200">
-              <span className="text-cyan mr-2">▹</span> React
-            </li>
-            <li className="flex items-center hover:translate-x-1 transition-transform duration-200">
-              <span className="text-cyan mr-2">▹</span> TypeScript
-            </li>
-            <li className="flex items-center hover:translate-x-1 transition-transform duration-200">
-              <span className="text-cyan mr-2">▹</span> Node.js
-            </li>
-            <li className="flex items-center hover:translate-x-1 transition-transform duration-200">
-              <span className="text-cyan mr-2">▹</span> PostgreSQL
-            </li>
-            <li className="flex items-center hover:translate-x-1 transition-transform duration-200">
-              <span className="text-cyan mr-2">▹</span> Tailwind CSS
-            </li>
-            <li className="flex items-center hover:translate-x-1 transition-transform duration-200">
-              <span className="text-cyan mr-2">▹</span> Express
-            </li>
-          </ul>
+        {/* Skills Section */}
+        <div className="mt-8">
+          <h3 className="text-2xl font-bold text-slate-light mb-6">Technical Skills</h3>
+          
+          {/* Tab Buttons */}
+          <div className="flex gap-4 mb-6 flex-wrap">
+            <button
+              onClick={() => setActiveTab('Languages')}
+              className={`px-6 py-3 rounded-lg font-semibold transition-all duration-300 ${
+                activeTab === 'Languages'
+                  ? 'bg-cyan text-navy-dark scale-105'
+                  : 'bg-navy-light text-slate hover:bg-navy-light/70'
+              }`}
+            >
+              Coding Languages
+            </button>
+            <button
+              onClick={() => setActiveTab('frameworks')}
+              className={`px-6 py-3 rounded-lg font-semibold transition-all duration-300 ${
+                activeTab === 'frameworks'
+                  ? 'bg-cyan text-navy-dark scale-105'
+                  : 'bg-navy-light text-slate hover:bg-navy-light/70'
+              }`}
+            >
+              Frameworks & Tech
+            </button>
+            <button
+              onClick={() => setActiveTab('tools')}
+              className={`px-6 py-3 rounded-lg font-semibold transition-all duration-300 ${
+                activeTab === 'tools'
+                  ? 'bg-cyan text-navy-dark scale-105'
+                  : 'bg-navy-light text-slate hover:bg-navy-light/70'
+              }`}
+            >
+              Development Tools
+            </button>
+          </div>
+
+          {/* Skills List with Progress Bars */}
+          <div className="space-y-4">
+            {skills[activeTab].map((skill, index) => (
+              <div
+                key={skill.name}
+                className="animate-fade-in"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <div className="flex justify-between mb-2">
+                  <span className="text-slate-light font-medium">{skill.name}</span>
+                  <span className="text-cyan">{skill.level}%</span>
+                </div>
+                <div className="w-full bg-navy-light rounded-full h-3 overflow-hidden">
+                  <div
+                    className="bg-gradient-to-r from-cyan to-blue-500 h-full rounded-full transition-all duration-1000 ease-out"
+                    style={{ width: isVisible ? `${skill.level}%` : '0%' }}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -65,3 +134,8 @@ const About = () => {
 };
 
 export default About;
+
+
+
+
+ 
