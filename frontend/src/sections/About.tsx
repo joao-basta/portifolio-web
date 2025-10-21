@@ -19,7 +19,8 @@ const About = () => {
       {name: 'Tailwind', level: 70},
       {name: 'Flask', level: 70},
       {name: 'Restful APIs', level: 65},
-      {name: 'Django', level: 60}
+      {name: 'Django', level: 60},
+      {name: 'IoT & edge computing', level:60}
     ],
     tools:[
       {name: 'Git', level: 90},
@@ -70,7 +71,7 @@ const About = () => {
 
         {/* Skills Section */}
         <div className="mt-8">
-          <h3 className="text-2xl font-bold text-slate-light mb-6">Technical Skills</h3>
+          <h3 className="text-2xl font-bold text-slate-light mb-6">Using mostly:</h3>
           
           {/* Tab Buttons */}
           <div className="flex gap-4 mb-6 flex-wrap">

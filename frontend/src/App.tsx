@@ -3,11 +3,12 @@ import HeroSection from './sections/Hero';
 import AboutSection from './sections/About';
 import ProjectsSection from './sections/Projects';
 import ContactSection from './sections/Contact';
-
+import CursorGlow from './components/CursorGlow';
 function App() {
   return (
     <div className="flex">
-      {/* Sidebar */}
+      
+      <CursorGlow />
       <Sidebar />
       
       {/* Main Content */}

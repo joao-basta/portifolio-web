@@ -28,8 +28,8 @@ const Hero = () => {
             strings={[
               "Joao Basta"
             ]}
-            typeSpeed={50}
-            backSpeed={30}
+            typeSpeed={80}
+            backSpeed={50}
           />
         </h1>
 
@@ -44,7 +44,7 @@ const Hero = () => {
             showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
-          I build scalable, fast and safe web applications, ensuring a good user experience and execellence also guaranting future
+          I build scalable, fast and safe web applications,  ensuring execellence and a good user experience also guaranting future
           intelligent automation, delivering high-quality solutions meeting the efficiency and stability that you need.
         </p>
       </div>
