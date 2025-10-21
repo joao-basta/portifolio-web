@@ -1,11 +1,20 @@
-const AboutSection = () => {
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
+
+const About = () => {
+  const { ref, isVisible } = useScrollAnimation();
+
   return (
     <section id="about" className="min-h-screen flex items-center py-20">
-      <div className="max-w-4xl">
+      <div
+        ref={ref}
+        className={`max-w-4xl transition-all duration-700 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}
+      >
         <h2 className="text-4xl font-bold text-slate-light mb-8">
-          <span className="ml-8">01.</span> About Me
+          <span className="text-cyan">01.</span> About Me
         </h2>
-        <div className="text-slate text-lg space-y-4 ml-8">
+        <div className="text-slate text-lg space-y-4">
           <p>
             I'm Joao Basta, a Software Engineer specializing in transcending aesthetics. My background is in systems construction,
             meaning the value I deliver isn't just in what you see, but in the invisible foundation of your application.
@@ -28,39 +37,25 @@ const AboutSection = () => {
           </p>
           <br /><br />
 
-          <p>
-            Here are some technologies I've been working with:
-          </p>
+          <p>Here are some technologies I've been working with:</p>
           <ul className="grid grid-cols-2 gap-2 mt-4">
-            <li className="flex items-center">
-              <span className=" mr-2">▹</span> React
+            <li className="flex items-center hover:translate-x-1 transition-transform duration-200">
+              <span className="text-cyan mr-2">▹</span> React
             </li>
-            <li className="flex items-center">
-              <span className=" mr-2">▹</span> TypeScript
+            <li className="flex items-center hover:translate-x-1 transition-transform duration-200">
+              <span className="text-cyan mr-2">▹</span> TypeScript
             </li>
-            <li className="flex items-center">
-              <span className="mr-2">▹</span> Node.js
+            <li className="flex items-center hover:translate-x-1 transition-transform duration-200">
+              <span className="text-cyan mr-2">▹</span> Node.js
             </li>
-            <li className="flex items-center">
-              <span className="mr-2">▹</span> PostgreSQL
+            <li className="flex items-center hover:translate-x-1 transition-transform duration-200">
+              <span className="text-cyan mr-2">▹</span> PostgreSQL
             </li>
-            <li className="flex items-center">
-              <span className="mr-2">▹</span> Tailwind CSS
+            <li className="flex items-center hover:translate-x-1 transition-transform duration-200">
+              <span className="text-cyan mr-2">▹</span> Tailwind CSS
             </li>
-            <li className="flex items-center">
-              <span className="mr-2">▹</span> Python
-            </li>
-            <li className="flex items-center">
-              <span className="mr-2">▹</span> Java
-            </li>
-            <li className="flex items-center">
-              <span className="mr-2">▹</span> JavaScript
-            </li>
-            <li className="flex items-center">
-              <span className="mr-2">▹</span> API's like: REST, Flask,  Django
-            </li>
-            <li className="flex items-center">
-              <span className="mr-2">▹</span> IOT and Edge Computing
+            <li className="flex items-center hover:translate-x-1 transition-transform duration-200">
+              <span className="text-cyan mr-2">▹</span> Express
             </li>
           </ul>
         </div>
@@ -69,4 +64,4 @@ const AboutSection = () => {
   );
 };
 
-export default AboutSection;
+export default About;

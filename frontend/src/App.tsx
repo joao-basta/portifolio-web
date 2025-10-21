@@ -1,4 +1,4 @@
-import Sidebar from './components/sideBar';
+import Sidebar from './components/SideBar';
 import HeroSection from './sections/Hero';
 import AboutSection from './sections/About';
 import ProjectsSection from './sections/Projects';
@@ -11,7 +11,7 @@ function App() {
       <Sidebar />
       
       {/* Main Content */}
-      <main className="ml-64 w-full">
+      <main className="w-full md:ml-64 px-6 md:px-12 lg:px-24">
         <HeroSection />
         <AboutSection />
         <ProjectsSection />

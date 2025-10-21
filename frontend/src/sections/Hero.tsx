@@ -1,35 +1,56 @@
+import { useEffect, useState } from 'react';
+import { ReactTyped } from 'react-typed';
+
 const Hero = () => {
-  const scrollToProjects = () => {
-    document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
-  };
+  const [showContent, setShowContent] = useState(false);
+
+  useEffect(() => {
+    // Stagger the animation
+    setTimeout(() => setShowContent(true), 100);
+  }, []);
 
   return (
-    <section className="min-h-screen flex items-center justify-start ml-10 bg-navy-dark leading-relaxed text-slate-400 antialiased
-     selection:bg-teal-900 selection:text-teal-1200">
-      <div className="text-left text-slate-400 px-4 max-w-4xl">
-        <h1 className="text-5x1 md:text-5xl font-bold mb-6 animate-fade-in">
-          Joao Paulo
+    <section className="min-h-screen flex items-center justify-start">
+      <div className="max-w-2xl">
+        <p
+          className={`text-cyan text-lg mb-4 transition-all duration-700 ${
+            showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          }`}
+        >
+          Hi, my name is
+        </p>
+        <h1
+          className={`text-6xl font-bold text-slate-light mb-4 transition-all duration-700 delay-100 ${
+            showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          }`}
+        >
+          <ReactTyped
+            strings={[
+              "Joao Basta"
+            ]}
+            typeSpeed={50}
+            backSpeed={30}
+          />
         </h1>
-        <h3 className="text-xl md:text-2xl mb-4 opacity-90">
-          Full Stack Software Engineer
+
+        <h3
+          className={`text-3xl font-bold text-slate mb-8 transition-all duration-700 delay-200 ${
+            showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          }`}>
+            Full-Stack Software Engineer
         </h3>
-        <p className="text-slate text-xl max-w-2xl mb-8">
+        <p
+          className={`text-xl font-bold text-slate mb-8 transition-all duration-700 delay-200 ${
+            showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          }`}
+        >
           I build scalable, fast and safe web applications, ensuring a good user experience and execellence also guaranting future
           intelligent automation, delivering high-quality solutions meeting the efficiency and stability that you need.
         </p>
-        <button 
-          onClick={scrollToProjects}
-          className="bg-blue-800 text{} px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 hover:scale-105 transition-all duration-300 shadow-lg"
-        >
-          View My  Previous Works
-        </button>
-      </div>
-
-      <div className="ml-64">
-        <img src="" alt="logo"/>
       </div>
     </section>
   );
 };
 
 export default Hero;
+
