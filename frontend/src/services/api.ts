@@ -1,6 +1,6 @@
 import type { Project, ContactMessage } from '../types';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:5000/api';
 
 // Get all projects
 export const getProjects = async (): Promise<Project[]> => {
@@ -14,13 +14,17 @@ export const getProjects = async (): Promise<Project[]> => {
   }
 };
 
-// Create a new project (for admin use later)
-export const createProject = async (project: Omit<Project, 'id' | 'created_at'>): Promise<Project | null> => {
+// Create a new project (admin — requires JWT token)
+export const createProject = async (
+  project: Omit<Project, 'id' | 'created_at'>,
+  token: string
+): Promise<Project | null> => {
   try {
     const response = await fetch(`${API_URL}/projects`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
       },
       body: JSON.stringify(project),
     });
@@ -33,13 +37,13 @@ export const createProject = async (project: Omit<Project, 'id' | 'created_at'>)
 };
 
 // Send contact message
-export const sendContactMessage = async (message: ContactMessage): Promise<boolean> => {
+export const sendContactMessage = async (
+  message: ContactMessage
+): Promise<boolean> => {
   try {
     const response = await fetch(`${API_URL}/contact`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(message),
     });
     return response.ok;
