@@ -5,7 +5,6 @@ const Hero = () => {
   const [showContent, setShowContent] = useState(false);
 
   useEffect(() => {
-    // Stagger the animation
     setTimeout(() => setShowContent(true), 100);
   }, []);
 
@@ -25,9 +24,7 @@ const Hero = () => {
           }`}
         >
           <ReactTyped
-            strings={[
-              "Joao Basta"
-            ]}
+            strings={['Joao Basta']}
             typeSpeed={80}
             backSpeed={50}
           />
@@ -36,16 +33,20 @@ const Hero = () => {
         <h3
           className={`text-2xl font-bold text-slate mb-8 transition-all duration-700 delay-200 ${
             showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-          }`}>
-            Full-Stack Software Engineer
+          }`}
+        >
+          Full-Stack Software Engineer
         </h3>
+
         <p
-          className={`text-0xl font-bold text-slate mb-8 transition-all duration-700 delay-200 ${
+          className={`text-base text-slate mb-8 transition-all duration-700 delay-200 ${
             showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
-          I build scalable, fast and safe web applications,  ensuring execellence and a good user experience also guaranting future
-          intelligent automation, delivering high-quality solutions meeting the efficiency and stability that you need.
+          I build scalable, fast and secure web applications, ensuring excellence
+          and a great user experience — while guaranteeing future intelligent
+          automation, delivering high-quality solutions that meet the efficiency
+          and stability you need.
         </p>
       </div>
     </section>
@@ -53,4 +54,3 @@ const Hero = () => {
 };
 
 export default Hero;
-

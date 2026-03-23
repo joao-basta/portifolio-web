@@ -3,6 +3,46 @@ import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { getProjects } from '../services/api';
 import type { Project } from '../types';
 
+// Static fallback — shown when backend is unavailable
+const STATIC_PROJECTS: Project[] = [
+  {
+    id: 1,
+    title: 'RAG Chatbot — Mental Health (DSM-5-TR)',
+    description:
+      'Chatbot built independently using Retrieval-Augmented Generation to answer questions based on DSM-5-TR content. Built with Python, LangChain, and ChromaDB.',
+    tech_stack: ['Python', 'LangChain', 'ChromaDB', 'RAG'],
+    github_url: 'https://github.com/joao-basta',
+    created_at: '',
+  },
+  {
+    id: 2,
+    title: 'Winery IoT Dashboard',
+    description:
+      'Full backend for an IoT dashboard monitoring winery data in real time. Solely responsible for the backend architecture using Python, Flask, and PostgreSQL.',
+    tech_stack: ['Python', 'Flask', 'PostgreSQL', 'IoT'],
+    github_url: 'https://github.com/joao-basta',
+    created_at: '',
+  },
+  {
+    id: 3,
+    title: 'QI Tech Hackathon — Backend MVP',
+    description:
+      'Backend MVP built under time pressure at USP\'s Polytechnic School during the QI Tech Hackathon. Focused on fast API design and integration.',
+    tech_stack: ['Python', 'REST API', 'PostgreSQL'],
+    github_url: 'https://github.com/joao-basta',
+    created_at: '',
+  },
+  {
+    id: 4,
+    title: 'Full-Stack Web Portfolio',
+    description:
+      'This portfolio — built with a Node.js/Express/PostgreSQL backend and a React/TypeScript frontend, including a protected admin panel for content management.',
+    tech_stack: ['React', 'TypeScript', 'Node.js', 'Express', 'PostgreSQL'],
+    github_url: 'https://github.com/joao-basta/portfolio',
+    created_at: '',
+  },
+];
+
 const Projects = () => {
   const { ref, isVisible } = useScrollAnimation();
   const [projects, setProjects] = useState<Project[]>([]);
@@ -11,25 +51,19 @@ const Projects = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       const data = await getProjects();
-      setProjects(data);
+      // If API returns nothing (backend down/not deployed), use static fallback
+      setProjects(data.length > 0 ? data : STATIC_PROJECTS);
       setLoading(false);
     };
 
     fetchProjects();
   }, []);
 
-  // extract nested ternary into an independent statement
   let content;
   if (loading) {
     content = (
       <div className="text-center text-slate">
         <p className="text-xl">Loading projects...</p>
-      </div>
-    );
-  } else if (projects.length === 0) {
-    content = (
-      <div className="text-center text-slate">
-        <p className="text-xl">No projects yet. Coming soon!</p>
       </div>
     );
   } else {
@@ -38,9 +72,9 @@ const Projects = () => {
         {projects.map((project, index) => (
           <div
             key={project.id}
-            className={`bg-navy-light p-6 rounded-lg border border-navy-light 
-                  hover:border-cyan transition-all duration-300 transform hover:-translate-y-1
-                  ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+            className={`bg-navy-light p-6 rounded-lg border border-navy-light
+              hover:border-cyan transition-all duration-300 transform hover:-translate-y-1
+              ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
             style={{ transitionDelay: `${index * 100}ms` }}
           >
             {project.image_url && (
@@ -96,7 +130,7 @@ const Projects = () => {
   }
 
   return (
-    <section className="max-w-6xl w-full" ref={ref}>
+    <section id="projects" className="max-w-6xl w-full py-20" ref={ref}>
       <h2
         className={`text-4xl font-bold text-slate-light mb-12 transition-all duration-700 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
