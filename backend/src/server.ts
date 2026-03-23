@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import pool from './config/database';
 import projectRoutes from './routes/projectRoutes';
 import contactRoutes from './routes/contactRoutes';
+import authRoutes from './routes/authRoutes';
 
 // Load environment variables
 dotenv.config();
@@ -38,6 +39,8 @@ app.get('/api/db-test', async (req: Request, res: Response) => {
 app.use('/api', projectRoutes);
 
 app.use('/api', contactRoutes);
+
+app.use('/api/auth', authRoutes);
 
 // Start server
 app.listen(PORT, () => {
